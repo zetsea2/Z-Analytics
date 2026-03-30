@@ -1,6 +1,6 @@
 import streamlit as st
 import requests
-import google.generativeai as genai
+from google import genai
 from PIL import Image
 from ultralytics import YOLO
 import numpy as np
@@ -9,8 +9,8 @@ import pandas as pd
 # ----------------- 1. SECURE CONFIGURATION ----------------- #
 # Pro Tip: In a real competition, store this in "Streamlit Secrets"
 GEMINI_API_KEY = "YOUR_GEMINI_API_KEY_HERE" 
-genai.configure(api_key=GEMINI_API_KEY)
-gemini_brain = genai.GenerativeModel('gemini-1.5-flash')
+client = genai.Client(api_key=GEMINI_API_KEY)
+# Use client.models.generate_content() later in the code
 
 # Load the "Missile-Like" Detection Engine (YOLOv8)
 @st.cache_resource
